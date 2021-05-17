@@ -122,5 +122,5 @@ select couresName as KhoaHoc , avg(point) as DiemTB
 from course
          inner join Points P on Course.couresID = P.coures_ID
 group by couresName
-    where max(DiemTB)
-;
+order by couresName desc
+    limit 1;
