@@ -103,3 +103,24 @@ insert into points(coures_ID, student_ID, point) value
 (3,8,9),
 (3,10,9),
 (3,4,8);
+
+# select address as DiaChi, count(Student.studentsID) as Soluong
+select address as DiaChi, count(Address.addressID) as Soluong
+from address
+         inner join Students S on Address.addressID = S.addressID
+group by address
+order by address desc;
+
+select couresName as KhoaHoc , avg(point) as DiemTB
+from course
+         inner join Points P on Course.couresID = P.coures_ID
+group by couresName
+order by couresName desc;
+
+
+select couresName as KhoaHoc , avg(point) as DiemTB
+from course
+         inner join Points P on Course.couresID = P.coures_ID
+group by couresName
+    where max(DiemTB)
+;
