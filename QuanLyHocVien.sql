@@ -124,3 +124,24 @@ from course
 group by couresName
 order by couresName desc
     limit 1;
+
+select  Ketqua.KhoaHoc, max(Ketqua.DiemTB)
+from (select couresName as KhoaHoc , avg(point) as DiemTB
+      from course
+               inner join Points P on Course.couresID = P.coures_ID
+      group by couresName
+      order by couresName desc) as Ketqua;
+
+
+# create table ketqua(
+    #     id int auto_increment
+        # );
+
+select a.studentName, max(a.point) from (select students.studentName, p.point from students join points p on students.studentID = p.student_ID) as a;
+
+
+SELECT S.StudentId, S.StudentName, AVG(point)
+FROM Students S join Points p on S.StudentId = p.student_ID
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(point) >= ALL (SELECT AVG(point) FROM Points GROUP BY Points.pointId);
+
